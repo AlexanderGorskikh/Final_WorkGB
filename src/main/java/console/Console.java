@@ -18,7 +18,7 @@ public class Console implements UserInterface {
 	@Override
 	public void start() {
 		boolean flag = true;
-		System.out.println("Программа запущена");
+		System.out.println("Программа запущена. help - список доступных команд");
 		do {
 			switch (scanner.nextLine()) {
 			case "train" -> trainCreature();
@@ -33,14 +33,14 @@ public class Console implements UserInterface {
 		} while (flag);
 	}
 
-	private String showCommands() {
+	private void showCommands() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("help - список команд");
-		sb.append("info - вывод таблицы");
-		sb.append("train - тренировка животного(добавление команды)");
-		sb.append("del - удалить животное");
-		sb.append("add - добавить животное");
-		return sb.toString();
+		sb.append("help - список команд\n");
+		sb.append("info - вывод таблицы\n");
+		sb.append("train - тренировка животного(добавление команды)\n");
+		sb.append("del - удалить животное\n");
+		sb.append("add - добавить животное\n");
+		System.out.println(sb);
 	}
 
 	@Override
@@ -58,19 +58,35 @@ public class Console implements UserInterface {
 
 	@Override
 	public void deleteCreature() {
-		// TODO Auto-generated method stub
+		System.out.println("Выберите ID животного для удаления: ");
+		int id = scanner.nextInt();
+		if (!presenter.deleteCreature(choiceType(), id)) {
+			System.out.println("Животное удалено из реестра");
+		} else {
+			System.out.println("Животного с таким id нет в реестре");
+		}
 
 	}
 
 	@Override
 	public void trainCreature() {
-		// TODO Auto-generated method stub
+		System.out.println("Выберите ID животного для обучения: ");
+		int id = Integer.parseInt(scanner.nextLine());
+		System.out.println("Напишите название команды");
+		String nameCommand = scanner.nextLine();
+		System.out.println("Напишите описание команды");
+		String desc = scanner.nextLine();
+		if (!presenter.trainCreature(choiceType(), id, nameCommand, desc)) {
+			System.out.println("Тренировка прошла успешно");
+		} else {
+			System.out.println("Новая команда не добавилась");
+		}
 
 	}
 
 	@Override
 	public void getInfo() {
-
+		System.out.println(presenter.getInfo(choiceType()));
 	}
 
 	private TypesOfCreatures choiceType() {

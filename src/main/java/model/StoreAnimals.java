@@ -15,7 +15,6 @@ public class StoreAnimals {
 		if (animals.get(type) == null) {
 			animals.put(type, new HashMap<Integer, Animal>());
 		}
-		System.out.println(animals);
 		animals.get(type).put(animal.getID(), animal);
 		System.out.println(animals);
 		return true;
@@ -35,5 +34,9 @@ public class StoreAnimals {
 
 	public boolean trainCreature(TypesOfCreatures type, int ID, Command c) {
 		return animals.get(type).get(ID).trainAnimal(c);
+	}
+	public String getInfo(TypesOfCreatures type) {
+		if (animals.get(type) == null) return "Реестр пуст";
+		return animals.get(type).toString();
 	}
 }

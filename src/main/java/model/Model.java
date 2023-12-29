@@ -22,4 +22,8 @@ public class Model {
 	public boolean trainCreature(TypesOfCreatures type, int ID, Command c) {
 		return store.trainCreature(type, ID, c);
 	}
+
+	public String getInfo(TypesOfCreatures type) {
+		return store.getInfo(type);
+	}
 }

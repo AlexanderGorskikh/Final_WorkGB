@@ -13,4 +13,8 @@ public class Command {
 		this.desc = desc;
 		this.name = name;
 	}
+	@Override
+	public String toString() {
+		return name + " " + desc;
+	}
 }

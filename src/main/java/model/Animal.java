@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class Animal implements Comparable<Animal> {
 		this.type = type;
 		this.name = name;
 		this.age = age;
+		commands = new HashSet<>();
 	}
 
 	public String getInfo() {
